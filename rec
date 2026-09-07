@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0,
+             maximum-scale=1.0, user-scalable=no"
+  >
+
+  <title>Account Recovery</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "SF Pro Display", "SF Pro Text",
+                   Arial, sans-serif;
+
+      min-height: 100vh;
+      background: #FFD60A;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding:
+        env(safe-area-inset-top)
+        20px
+        env(safe-area-inset-bottom)
+        20px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 390px;
+      text-align: center;
+    }
+
+    .snapchat-logo {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 18px;
+      display: block;
+    }
+
+    .snapchat-logo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 28px;
+      letter-spacing: -1.5px;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px 22px;
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+      text-align: left;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      height: 54px;
+
+      border: 1px solid #ddd;
+      border-radius: 14px;
+
+      padding: 0 15px;
+
+      font-size: 16px;
+      outline: none;
+
+      -webkit-appearance: none;
+    }
+
+    input:focus {
+      border-color: #111;
+
+      box-shadow:
+        0 0 0 2px rgba(17, 17, 17, 0.08);
+    }
+
+    .login-button {
+      width: 100%;
+      height: 54px;
+
+      margin-top: 8px;
+
+      border: none;
+      border-radius: 14px;
+
+      background: #111;
+      color: white;
+
+      font-size: 17px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: transform 0.15s ease;
+    }
+
+    .login-button:active {
+      transform: scale(0.97);
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="login-container">
+
+    <!-- Snapchat Ghost Logo -->
+    <div class="snapchat-logo">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 38 38"
+        fill="none"
+        aria-label="Snapchat"
+      >
+        <path
+          fill="#fff"
+          stroke="#000"
+          stroke-width="1.5"
+          d="
+          M19 3
+          C11.2 3 6.5 8.8 6.5 17
+          C6.5 19.3 6.6 21.2 6.8 22.8
+          C5.9 23.5 4.6 24.1 3.5 24.6
+          C2.7 25 2.5 26 3.1 26.7
+          C4.3 28.1 6.2 28.7 8.1 28.9
+          C9 31.8 11.1 33.4 13.4 33.8
+          C14.4 34 15.2 34.8 16.1 35.5
+          C17 36.2 18 36.6 19 36.6
+          C20 36.6 21 36.2 21.9 35.5
+          C22.8 34.8 23.6 34 24.6 33.8
+          C26.9 33.4 29 31.8 29.9 28.9
+          C31.8 28.7 33.7 28.1 34.9 26.7
+          C35.5 26 35.3 25 34.5 24.6
+          C33.4 24.1 32.1 23.5 31.2 22.8
+          C31.4 21.2 31.5 19.3 31.5 17
+          C31.5 8.8 26.8 3 19 3Z
+          "
+        />
+
+        <ellipse cx="14" cy="18" rx="1.6" ry="2.2" fill="#000"/>
+        <ellipse cx="24" cy="18" rx="1.6" ry="2.2" fill="#000"/>
+      </svg>
+    </div>
+
+    <div class="logo">
+      Account Recovery
+    </div>
+
+    <div class="login-card">
+
+      <form id="loginForm">
+
+        <!-- Username -->
+        <div class="input-group">
+          <label for="username">
+            Username
+          </label>
+
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your username"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="login-button"
+        >
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+
+  </main>
+
+  <script>
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const username =
+          document.getElementById("username").value;
+
+        const password =
+          document.getElementById("password").value;
+
+        /*
+         * DEVELOPER TEST LOG
+         *
+         * The username is logged.
+         * The password itself is NOT logged or stored.
+         * We only record whether something was entered
+         * and its length.
+         */
+
+        console.log("=== LOGIN TEST ===");
+
+        console.log({
+          event: "LOGIN_TEST",
+          username: username,
+          passwordEntered: password.length > 0,
+          passwordLength: password.length
+        });
+
+        console.log("==================");
+
+      });
+  </script>
+
+</body>
+</html>
